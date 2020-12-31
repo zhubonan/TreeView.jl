@@ -5,8 +5,9 @@
 # latex_escape(s::String) = replace(s, Dict("#"=>"\\#", "&"=>"\\&"))
 
 function latex_escape(s::String)
-    s = replace(s, "#"=>"\\#")
-    s = replace(s, "&"=>"\\&")
+    for char in ["&", "%", "\$", "#", "_"]
+        s = replace(s, "$char"=>"\\$char")
+    end
     return s
 end
 
